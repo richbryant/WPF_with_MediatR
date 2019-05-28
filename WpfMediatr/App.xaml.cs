@@ -2,6 +2,12 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
+using MediatR;
+using Prism.DryIoc;
+using DryIoc;
+using WpfMediatr.Dependencies;
+using IDataObject = WpfMediatr.Dependencies.IDataObject;
+using DataObject = WpfMediatr.Dependencies.DataObject;
 
 namespace WpfMediatr
 {
@@ -17,6 +23,13 @@ namespace WpfMediatr
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            var container = containerRegistry.GetContainer();
+            container.RegisterDelegate<ServiceFactory>(r => r.Resolve);
+            //container.RegisterMany(new[] { typeof(IMediator).GetAssembly(), typeof(WpfMediatr).GetAssembly() }, Registrator.Interfaces);
+
+            container.Register<IString, GetString>();
+            container.Register<IDateTime, Date>();
+            container.Register<IDataObject, DataObject>();
 
         }
     }
