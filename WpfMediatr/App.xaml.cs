@@ -25,7 +25,7 @@ namespace WpfMediatr
         {
             var container = containerRegistry.GetContainer();
             container.RegisterDelegate<ServiceFactory>(r => r.Resolve);
-            //container.RegisterMany(new[] { typeof(IMediator).GetAssembly(), typeof(WpfMediatr).GetAssembly() }, Registrator.Interfaces);
+            container.RegisterMany(new[] { typeof(IMediator).GetAssembly(), typeof(Person).GetAssembly() }, Registrator.Interfaces);
 
             container.Register<IString, GetString>();
             container.Register<IDateTime, Date>();

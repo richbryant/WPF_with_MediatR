@@ -8,7 +8,7 @@ namespace WpfMediatr.Dependencies
 {
     public class Date : IDateTime
     {
-        public async Task<DateTime> GetDate()
+        public async Task<DateTime> Get()
         {
             return await Task.FromResult(DateTime.Today);
         }

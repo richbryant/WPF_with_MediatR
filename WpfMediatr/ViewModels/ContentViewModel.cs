@@ -1,8 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using MediatR;
+using WpfMediatr.Commands;
 using WpfMediatr.Dependencies;
 
 namespace WpfMediatr.ViewModels
@@ -11,16 +11,12 @@ namespace WpfMediatr.ViewModels
     {
         private DateTime _date;
         private string _helloString;
-        private readonly IString _hello;
-        private readonly IDateTime _today;
-        private readonly IDataObject _data;
         private Person _bloke = new Person();
+        private readonly IMediator _mediator;
 
-        public ContentViewModel(IString hello, IDateTime today, IDataObject dataObject)
+        public ContentViewModel(IMediator mediator)
         {
-            _hello = hello;
-            _today = today;
-            _data = dataObject;
+            _mediator = mediator;
             GetHello = new DelegateCommand(Hello);
             GetToday = new DelegateCommand(GetDate);
             GetBloke = new DelegateCommand(Bloke);
@@ -32,19 +28,19 @@ namespace WpfMediatr.ViewModels
 
         private async void Hello()
         {
-            _helloString = await  _hello.Get();
+            _helloString = await await _mediator.Send(new GetHelloCommand());
             RaisePropertyChanged(nameof(HelloString));
         }
 
         private async void GetDate()
         {
-            _date = await _today.GetDate();
+            _date = await await _mediator.Send(new GetDateCommand());
             RaisePropertyChanged(nameof(Date));
         }
 
         private async void Bloke()
         {
-            _bloke = await _data.Get();
+            _bloke = await await _mediator.Send(new GetBlokeCommand());
             RaisePropertyChanged(nameof(FirstName));
             RaisePropertyChanged(nameof(LastName));
         }

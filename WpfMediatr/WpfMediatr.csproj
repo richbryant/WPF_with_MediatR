@@ -68,6 +68,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\GetBlokeCommand.cs" />
+    <Compile Include="Commands\GetBlokeHandler.cs" />
+    <Compile Include="Commands\GetDateCommand.cs" />
+    <Compile Include="Commands\GetDateHandler.cs" />
+    <Compile Include="Commands\GetHelloCommand.cs" />
+    <Compile Include="Commands\GetHelloHandler.cs" />
     <Compile Include="Dependencies\DataObject.cs" />
     <Compile Include="Dependencies\GetDate.cs" />
     <Compile Include="Dependencies\GetString.cs" />

@@ -5,6 +5,6 @@ namespace WpfMediatr.Dependencies
 {
     public interface IDateTime
     {
-        Task<DateTime> GetDate();
+        Task<DateTime> Get();
     }
 }
